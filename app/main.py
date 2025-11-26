@@ -40,7 +40,7 @@ def clear_history():
 def get_metrics():
     # Simulação dos dados
     irradiacao = random.uniform(800, 1000)
-    eficiencia = random.uniform(50, 100) / 100
+    eficiencia = random.uniform(10, 100) / 100
     area = 1.60
     custo = 500
     potencia = random.uniform(600, 1000)
