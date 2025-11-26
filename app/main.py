@@ -14,7 +14,7 @@ import os
 # 	Energia gerada
 
 history = [] 
-MAX_HISTORY_SIZE = 120
+MAX_HISTORY_SIZE = 20
  
 app = FastAPI()
 
@@ -29,6 +29,11 @@ app.add_middleware(
 @app.get("/")
 def check():
     return {"status": "running"}
+
+@app.delete("/history")
+def clear_history():
+    history.clear()
+    return {"message": "cleared"}
 
 @app.get("/metrics")
 def get_metrics():
@@ -48,6 +53,10 @@ def get_metrics():
         "power_w": round(potencia, 2),
         "time_now": time_now
     }
+    
+    # 4. Limpeza (Buffer Circular): Se passar do limite, remove o mais antigo
+    if len(history) > MAX_HISTORY_SIZE:
+        history.pop(0) # Remove o primeiro item da lista
     
     history.append(curr_metrics)
     return history
