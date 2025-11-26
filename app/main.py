@@ -12,6 +12,9 @@ import os
 # 	Área da placa
 # 	Custo estimado
 # 	Energia gerada
+
+history = [] 
+MAX_HISTORY_SIZE = 120
  
 app = FastAPI()
 
@@ -37,7 +40,7 @@ def get_metrics():
     potencia = random.uniform(0, 1000)
     time_now = datetime.now().isoformat()
 
-    return {
+    curr_metrics = {
         "irr_wm2": round(irradiacao, 2),
         "eff_pct": round(eficiencia, 2),
         "area_m2": area,
@@ -45,6 +48,9 @@ def get_metrics():
         "power_w": round(potencia, 2),
         "time_now": time_now
     }
+    
+    history.append(curr_metrics)
+    return history
 
 
 if __name__ == "__main__":
