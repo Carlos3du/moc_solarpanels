@@ -33,11 +33,11 @@ def check():
 @app.get("/metrics")
 def get_metrics():
     # Simulação dos dados
-    irradiacao = random.uniform(0, 1000)
+    irradiacao = random.uniform(800, 1000)
     eficiencia = 0.25
     area = 1.60
     custo = 500
-    potencia = random.uniform(0, 1000)
+    potencia = random.uniform(600, 1000)
     time_now = datetime.now().isoformat()
 
     curr_metrics = {
