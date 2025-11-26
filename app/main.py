@@ -14,7 +14,7 @@ import os
 # 	Energia gerada
 
 history = [] 
-MAX_HISTORY_SIZE = 20
+MAX_HISTORY_SIZE = 30
  
 app = FastAPI()
 
@@ -30,9 +30,10 @@ app.add_middleware(
 def check():
     return {"status": "running"}
 
-@app.delete("/history")
+@app.get("/clear_history")
 def clear_history():
-    history.clear()
+    global history
+    history = []
     return {"message": "cleared"}
 
 @app.get("/metrics")
