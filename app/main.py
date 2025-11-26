@@ -23,6 +23,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+def check():
+    return {"status": "running"}
+
 @app.get("/metrics")
 def get_metrics():
     # Simulação dos dados
