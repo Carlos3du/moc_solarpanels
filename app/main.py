@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import random
 from datetime import datetime
 import uvicorn
+import os 
 
 
 # Métricas:
@@ -41,6 +42,8 @@ def get_metrics():
         "time_now": time_now
     }
 
-# if __name__ == "__main__":
-#     # Roda na porta 8000
-#     uvicorn.run(app, host="0.0.0.0", port=8000)
+
+if __name__ == "__main__":
+    # Pega a porta do Railway ou usa 8000 se for local
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
