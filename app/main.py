@@ -34,7 +34,7 @@ def check():
 def get_metrics():
     # Simulação dos dados
     irradiacao = random.uniform(800, 1000)
-    eficiencia = 0.25
+    eficiencia = random.uniform(50, 100)
     area = 1.60
     custo = 500
     potencia = random.uniform(600, 1000)
